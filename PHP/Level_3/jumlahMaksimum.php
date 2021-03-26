@@ -32,15 +32,20 @@ function jumlahMaksimum($arr1, $arr2) {
   
   $s = false;
   
-  for ($i=0; $i<$l; $i++) {
-    for ($j=0; $j<$l; $j++) {
+  for ($i=0; $i<count($c); $i++) {
+    for ($j=0; $j<count($d); $j++) {
     	if ($c[$i]==$d[$j] && $i!=$j) {
+		array_push($t,($c[$i]+$d[$j])/2);
     		$s = true;
-    		array_push($t,($c[$i]+$d[$j])/2);
+    		$c = $d;
+    	} else if ($c[$i]==$d[$j] && $i==$j) {
+    		$s = true;
+    		if ($i==count($c)-2)
+    			$c = $d;
     	}
     }
     if ($s)
-		  array_push($t,$d[$i]);
+    	array_push($t,$c[$i]);
     else array_push($t,$c[$i]);
   }
   return $t;
